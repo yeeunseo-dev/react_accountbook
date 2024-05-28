@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useItems } from "../contexts/ItemContext";
 import styled from "styled-components";
 
-// styled-component
-const MonthSelector = ({ items }) => {
-  const getInitialMonth = () => {
-    const savedMonth = localStorage.getItem("selectedMonth");
-    return savedMonth ? savedMonth : "";
-  };
+const MonthSelector = () => {
+  const { items } = useItems();
 
-  const [selectedMonth, setSelectedMonth] = useState(getInitialMonth);
+  const [selectedMonth, setSelectedMonth] = useState(() => {
+    const savedMonth = localStorage.getItem("selectedMonth");
+    return savedMonth || "";
+  });
 
   useEffect(() => {
     localStorage.setItem("selectedMonth", selectedMonth);

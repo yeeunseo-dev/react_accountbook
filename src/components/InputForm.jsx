@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { useItems } from "../contexts/ItemContext";
 
 //입력 폼
-const InputForm = ({ addItem }) => {
+const InputForm = () => {
+  const { addItem } = useItems();
   const [date, setDate] = useState("");
   const [category, setCategory] = useState("");
   const [expense, setExpense] = useState("");
@@ -36,7 +38,7 @@ const InputForm = ({ addItem }) => {
         expense,
         detail,
       };
-      addItem([...items, newItem]);
+      addItem(newItem);
 
       setDate("");
       setCategory("");
@@ -56,7 +58,6 @@ const InputForm = ({ addItem }) => {
             alignItems: "center",
           }}
         >
-          {/* <span className="label">날짜</span> */}
           <input
             className="input"
             type="text"
@@ -65,38 +66,7 @@ const InputForm = ({ addItem }) => {
             onChange={dateHandler}
           />
 
-          {/* <ul
-            name="항목"
-            className="input"
-            placeholder="카테고리를 입력해주세요"
-            value={category}
-            onChange={categoryHandler}
-          >
-            카테고리를 입력해주세요
-            {/* <li style={{ color: "#999999" }} value="">
-              카테고리를 입력해주세요
-            </li> */}
-          {/* <li>
-              <button>식비 🍚</button>
-            </li>
-            <li>
-              <button>생활 💳</button>
-            </li>
-            <li>
-              <button>교통 🚗</button>
-            </li>
-            <li>
-              <button>쇼핑 🛍️</button>
-            </li>
-            <li>
-              <button>금융 💸</button>
-            </li>
-            <li>
-              <button>기타 🎸</button>
-            </li>
-          </ul> */}
           <input
-            aria-label="항목"
             className="input"
             type="text"
             placeholder="카테고리를 입력해주세요"

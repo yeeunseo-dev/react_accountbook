@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Router from "./shared/Router";
 import GlobalStyle from "./components/GlobalStyle";
+import { ItemProvider } from "./contexts/ItemContext";
 
 const initialState = [
   {
@@ -41,33 +42,15 @@ const initialState = [
 ];
 
 const App = () => {
-  const [items, setItems] = useState(initialState);
-
-  const addItem = (newItem) => {
-    setItems([...items, newItem]);
-  };
-
-  const updateItem = (updatedItem) => {
-    console.log(updatedItem);
-    setItems(
-      items.map((item) => (item.id === updatedItem.id ? updatedItem : item))
-    );
-  };
-
-  const deleteItem = (id) => {
-    setItems(items.filter((item) => item.id !== id));
-  };
-
   return (
-    <div>
-      <GlobalStyle />
-      <Router
-        items={items}
-        addItem={addItem}
-        updateItem={updateItem}
-        deleteItem={deleteItem}
-      />
-    </div>
+    <>
+      <ItemProvider>
+        <div>
+          <GlobalStyle />
+          <Router />
+        </div>
+      </ItemProvider>
+    </>
   );
 };
 

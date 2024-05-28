@@ -1,13 +1,17 @@
 import { useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { useItems } from "../contexts/ItemContext";
 
-const Detail = ({ items, updateItem, deleteItem }) => {
+const Detail = () => {
   const navigate = useNavigate();
   const { id } = useParams();
+  const { items, updateItem, deleteItem } = useItems();
+
   const dateRef = useRef(null);
   const categoryRef = useRef(null);
   const detailRef = useRef(null);
   const expenseRef = useRef(null);
+
   const item = items.find((item) => item.id === parseInt(id));
 
   if (!item) {
@@ -51,7 +55,6 @@ const Detail = ({ items, updateItem, deleteItem }) => {
             defaultValue={item.date}
             ref={dateRef}
           />
-          {/* defaultValue */}
         </div>
         <div>
           <div className="detail-label">항목</div>

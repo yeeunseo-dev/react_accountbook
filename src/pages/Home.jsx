@@ -1,11 +1,12 @@
+import React from "react";
 import InputForm from "../components/InputForm";
 import MonthSelector from "../components/MonthSelector";
 
-const Home = ({ addItem, items }) => {
+const Home = () => {
   return (
     <div>
-      <InputForm addItem={addItem} />
-      <MonthSelector items={items} />
+      <InputForm />
+      <MonthSelector />
     </div>
   );
 };

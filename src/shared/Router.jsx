@@ -3,21 +3,12 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "../pages/Home";
 import Detail from "../pages/Detail";
 
-const Router = ({ items, addItem, updateItem, deleteItem }) => {
+const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home items={items} addItem={addItem} />} />
-        <Route
-          path="/detail/:id"
-          element={
-            <Detail
-              items={items}
-              updateItem={updateItem}
-              deleteItem={deleteItem}
-            />
-          }
-        />
+        <Route path="/" element={<Home />} />
+        <Route path="/detail/:id" element={<Detail />} />
       </Routes>
     </BrowserRouter>
   );
