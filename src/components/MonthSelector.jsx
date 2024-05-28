@@ -60,10 +60,11 @@ const MonthSelector = ({ items }) => {
           <Link className="list" key={item.id} to={`/detail/${item.id}`}>
             <div className="label">{item.date}</div>
             <div className="main-text">
-              {item.category} / {item.detail}
+              <div className="label">{item.category}</div> {item.detail}
             </div>
             <div>
-              <span className="highlight-text">{item.expense}</span> 원
+              <span className="highlight-text">{item.expense}</span>
+              <span className="label">원</span>
             </div>
           </Link>
         ))}

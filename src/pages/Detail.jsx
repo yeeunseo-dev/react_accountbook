@@ -15,8 +15,10 @@ const Detail = ({ items, updateItem, deleteItem }) => {
   }
 
   const handleDelete = () => {
-    deleteItem(item.id);
-    navigate("/");
+    if (window.confirm("정말 삭제하시겠습니까?")) {
+      deleteItem(item.id);
+      navigate("/");
+    }
   };
 
   const handleBack = () => {
@@ -38,61 +40,60 @@ const Detail = ({ items, updateItem, deleteItem }) => {
   // 현재 html의 정보를 알고 싶을 때 useRef사용
 
   return (
-    <div className="container">
-      <div>
-        <span className="label">날짜</span>
-        <br />
-        <input
-          className="input"
-          type="text"
-          defaultValue={item.date}
-          ref={dateRef}
-        />
-        {/* defaultValue */}
+    <>
+      {" "}
+      <div className="container">
+        <div>
+          <div className="detail-label">날짜</div>
+          <input
+            className="input"
+            type="text"
+            defaultValue={item.date}
+            ref={dateRef}
+          />
+          {/* defaultValue */}
+        </div>
+        <div>
+          <div className="detail-label">항목</div>
+          <input
+            className="input"
+            type="text"
+            defaultValue={item.category}
+            ref={categoryRef}
+          />
+        </div>
+        <div>
+          <div className="detail-label">내용</div>
+          <input
+            className="input"
+            type="text"
+            defaultValue={item.detail}
+            ref={detailRef}
+          />
+        </div>
+        <div>
+          <div className="detail-label">금액</div>
+          <input
+            className="input"
+            type="number"
+            defaultValue={item.expense}
+            ref={expenseRef}
+          />
+        </div>
       </div>
-      <div>
-        <span className="label">항목</span>
-        <br />
-        <input
-          className="input"
-          type="text"
-          defaultValue={item.category}
-          ref={categoryRef}
-        />
-      </div>
-      <div>
-        <span className="label">내용</span>
-        <br />
-        <input
-          className="input"
-          type="text"
-          defaultValue={item.detail}
-          ref={detailRef}
-        />
-      </div>
-      <div>
-        <span className="label">금액</span>
-        <br />
-        <input
-          className="input"
-          type="text"
-          defaultValue={item.expense}
-          ref={expenseRef}
-        />
-      </div>
-      <div>
-        <button className="main-button" onClick={handleUpdate}>
+      <div className="wrapper">
+        <button className="button main-button" onClick={handleUpdate}>
           수정
         </button>
         {/* onClick은 객체가 아닌 함수를 넣어서 {{}} 할 필요 없음*/}
-        <button className="main-button" onClick={handleDelete}>
+        <button className="button delete-button" onClick={handleDelete}>
           삭제
         </button>
-        <button className="main-button" onClick={handleBack}>
+        <button className="button back-button" onClick={handleBack}>
           뒤로가기
         </button>
       </div>
-    </div>
+    </>
   );
 };
 

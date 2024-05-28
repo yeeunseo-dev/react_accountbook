@@ -18,6 +18,15 @@ const GlobalStyle = createGlobalStyle`
   justify-content: center;
   }
 
+.wrapper {
+  width: 1200px;
+  padding: 10px;
+  margin: 20px 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
   .container {
   display: flex;
   align-items: center;
@@ -85,38 +94,42 @@ const GlobalStyle = createGlobalStyle`
     padding: 10px;
 } */
 
-
-
-  .label {
-    color: #999999;
-    font-weight: 400;
-    font-size: 16px;
-    margin: 8px 16px;
-
-  }
-
-  .main-button {
+  .button {
+    font-size: 14px;
+    height: 40px;
     background-color: #01BFA7;
     color: white;
     padding: 10px 20px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    margin: 8px;
+    margin: 0 8px;
   }
 
+  .main-button {
+    background-color: #01BFA7;
+  }
+
+  .delete-button {
+    background-color: #EE5D2A;
+  }
+
+  .back-button {
+    background-color: #999999;
+  }
 
   .month-button {
     font-family: 'Pretendard-Regular';
     height: 40px;
+    font-size: 14px;
+    font-weight: 400;
     background-color: #F0F0F0;
     color: #222222;
-    font-weight: 400;
     padding: 10px 20px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    margin: 8px;
+    margin: 0 8px;
 
   &:hover {
     color: white;
@@ -126,17 +139,18 @@ const GlobalStyle = createGlobalStyle`
 .input {
   display: flex;
   height: 40px;
-    width: 200px;
-    border-radius: 4px;
-    margin: 0 16px;
-    border: 2px solid transparent;
-    box-shadow: 0 2px 8px 2px rgba(0, 0, 0, 0.1);
-    padding-left: 8px;
+  font-size: 14px;
+  width: 200px;
+  border-radius: 4px;
+  margin: 0 8px;
+  border: 2px solid transparent;
+  box-shadow: 0 2px 8px 2px rgba(0, 0, 0, 0.1);
+  padding-left: 8px;
 
-    &:focus {
-    border: 2px solid #01BFA7;
-    user-zoom: none;
-    outline: none };
+  &:focus {
+  border: 2px solid #01BFA7;
+  user-zoom: none;
+  outline: none };
 }
 
 .highlight-text {
@@ -147,11 +161,28 @@ const GlobalStyle = createGlobalStyle`
 }
 
 .main-text {
+  display: flex;
+  align-items: center;
   color: #222222;
   font-size: 20px;
-  font-weight: 400;
+  font-weight: 600;
   vertical-align: baseline;
 }
+
+.label {
+  color: #999999;
+  font-weight: 400;
+  font-size: 16px;
+  margin: 8px 8px;
+  }
+
+  .detail-label {
+    color: #999999;
+    font-weight: 400;
+    font-size: 14px;
+    margin-left: 16px;
+    margin-bottom: 8px;
+  }
 
 `;
 

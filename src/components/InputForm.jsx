@@ -53,6 +53,7 @@ const InputForm = ({ addItem }) => {
           style={{
             display: "flex",
             justifyContent: "center",
+            alignItems: "center",
           }}
         >
           {/* <span className="label">날짜</span> */}
@@ -120,7 +121,7 @@ const InputForm = ({ addItem }) => {
           />
 
           <span>
-            <button className="main-button" onClick={handleSubmit}>
+            <button className="button main-button" onClick={handleSubmit}>
               저장
             </button>
           </span>
