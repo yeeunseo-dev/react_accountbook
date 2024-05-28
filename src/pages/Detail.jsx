@@ -38,37 +38,60 @@ const Detail = ({ items, updateItem, deleteItem }) => {
   // 현재 html의 정보를 알고 싶을 때 useRef사용
 
   return (
-    <div
-      style={{
-        display: "flex",
-        background: "#ffffff",
-        padding: "20px",
-        margin: "20px 80px",
-        borderRadius: "10px",
-      }}
-    >
+    <div className="container">
       <div>
-        날짜 <br />
-        <input type="text" defaultValue={item.date} ref={dateRef} />
+        <span className="label">날짜</span>
+        <br />
+        <input
+          className="input"
+          type="text"
+          defaultValue={item.date}
+          ref={dateRef}
+        />
         {/* defaultValue */}
       </div>
       <div>
-        항목 <br />
-        <input type="text" defaultValue={item.category} ref={categoryRef} />
+        <span className="label">항목</span>
+        <br />
+        <input
+          className="input"
+          type="text"
+          defaultValue={item.category}
+          ref={categoryRef}
+        />
       </div>
       <div>
-        내용 <br />
-        <input type="text" defaultValue={item.detail} ref={detailRef} />
+        <span className="label">내용</span>
+        <br />
+        <input
+          className="input"
+          type="text"
+          defaultValue={item.detail}
+          ref={detailRef}
+        />
       </div>
       <div>
-        금액 <br />
-        <input type="text" defaultValue={item.expense} ref={expenseRef} />
+        <span className="label">금액</span>
+        <br />
+        <input
+          className="input"
+          type="text"
+          defaultValue={item.expense}
+          ref={expenseRef}
+        />
       </div>
-      <br />
-      <button onClick={handleUpdate}>수정</button>
-      {/* onClick은 객체가 아닌 함수를 넣어서 {{}} 할 필요 없음*/}
-      <button onClick={handleDelete}>삭제</button>
-      <button onClick={handleBack}>뒤로가기</button>
+      <div>
+        <button className="main-button" onClick={handleUpdate}>
+          수정
+        </button>
+        {/* onClick은 객체가 아닌 함수를 넣어서 {{}} 할 필요 없음*/}
+        <button className="main-button" onClick={handleDelete}>
+          삭제
+        </button>
+        <button className="main-button" onClick={handleBack}>
+          뒤로가기
+        </button>
+      </div>
     </div>
   );
 };

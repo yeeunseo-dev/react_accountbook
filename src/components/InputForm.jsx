@@ -48,83 +48,79 @@ const InputForm = ({ addItem }) => {
   return (
     <>
       {/* <지출을 등록하는 컴포넌트 /> */}
-      <div
-        style={{
-          background: "#ffffff",
-          padding: "20px",
-          margin: "20px 80px",
-          borderRadius: "10px",
-        }}
-      >
+      <div className="container">
         <div
           style={{
             display: "flex",
             justifyContent: "center",
           }}
         >
-          <div
-            style={{
-              padding: "0px 10px",
-            }}
+          {/* <span className="label">날짜</span> */}
+          <input
+            className="input"
+            type="text"
+            placeholder="YYYY-MM-DD"
+            value={date}
+            onChange={dateHandler}
+          />
+
+          {/* <ul
+            name="항목"
+            className="input"
+            placeholder="카테고리를 입력해주세요"
+            value={category}
+            onChange={categoryHandler}
           >
-            <span style={{ margin: "0px 8px" }}>날짜</span>
-            <input
-              style={{ width: "160px" }}
-              type="date"
-              placeholder="YYYY-MM-DD"
-              value={date}
-              onChange={dateHandler}
-            />
-          </div>
-          <div
-            style={{
-              padding: "0px 10px",
-            }}
-          >
-            <span style={{ margin: "0px 8px" }}>항목</span>
-            <input
-              style={{ width: "160px" }}
-              type="text"
-              placeholder="카테고리를 입력해주세요"
-              value={category}
-              onChange={categoryHandler}
-            />
-          </div>
-          <div
-            style={{
-              padding: "0px 10px",
-            }}
-          >
-            <span style={{ margin: "0px 8px" }}>금액</span>
-            <input
-              style={{ width: "160px" }}
-              type="number"
-              placeholder="금액을 입력해주세요"
-              value={expense}
-              onChange={expenseHandler}
-            />
-          </div>
-          <div
-            style={{
-              padding: "0px 10px",
-            }}
-          >
-            <span style={{ margin: "0px 8px" }}>내용</span>
-            <input
-              style={{ width: "160px" }}
-              type="text"
-              placeholder="세부내용을 입력해주세요"
-              value={detail}
-              onChange={detailHandler}
-            />
-          </div>
+            카테고리를 입력해주세요
+            {/* <li style={{ color: "#999999" }} value="">
+              카테고리를 입력해주세요
+            </li> */}
+          {/* <li>
+              <button>식비 🍚</button>
+            </li>
+            <li>
+              <button>생활 💳</button>
+            </li>
+            <li>
+              <button>교통 🚗</button>
+            </li>
+            <li>
+              <button>쇼핑 🛍️</button>
+            </li>
+            <li>
+              <button>금융 💸</button>
+            </li>
+            <li>
+              <button>기타 🎸</button>
+            </li>
+          </ul> */}
+          <input
+            aria-label="항목"
+            className="input"
+            type="text"
+            placeholder="카테고리를 입력해주세요"
+            value={category}
+            onChange={categoryHandler}
+          />
+
+          <input
+            className="input"
+            type="text"
+            placeholder="세부내용을 입력해주세요"
+            value={detail}
+            onChange={detailHandler}
+          />
+
+          <input
+            className="input"
+            type="number"
+            placeholder="금액을 입력해주세요"
+            value={expense}
+            onChange={expenseHandler}
+          />
+
           <span>
-            <button
-              style={{
-                marginLeft: "20px",
-              }}
-              onClick={handleSubmit}
-            >
+            <button className="main-button" onClick={handleSubmit}>
               저장
             </button>
           </span>

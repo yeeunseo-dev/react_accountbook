@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 
+// styled-component
 const MonthSelector = ({ items }) => {
   const getInitialMonth = () => {
     const savedMonth = localStorage.getItem("selectedMonth");
@@ -37,63 +39,33 @@ const MonthSelector = ({ items }) => {
 
   return (
     <>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          background: "#ffffff",
-          padding: "20px",
-          margin: "20px 80px",
-          borderRadius: "10px",
-        }}
-      >
+      <div className="container">
         {months.map((month) => (
           <button
+            className="month-button"
             key={month}
             onClick={() => setSelectedMonth(month)}
-            style={{
-              backgroundColor: selectedMonth === month ? "blue" : "gray",
-              margin: "5px",
-              padding: "10px",
-              color: "white",
-              border: "none",
-              borderRadius: "5px",
-            }}
+            selected={selectedMonth === month}
           >
             {month}
           </button>
         ))}
+        <button className="month-button" onClick={() => setSelectedMonth("")}>
+          전체
+        </button>
       </div>
 
       <ul>
         {filteredItems.map((item) => (
-          <li
-            key={item.id}
-            style={{
-              padding: "20px",
-              margin: "10px 80px",
-              borderRadius: "10px",
-              background: "white",
-            }}
-          >
-            <Link
-              to={`/detail/${item.id}`}
-              style={{ textDecoration: "none", color: "black" }}
-            >
-              <div style={{ marginBottom: "10px" }}>{item.date}</div>
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                }}
-              >
-                <div>
-                  {item.category} - {item.detail}
-                </div>
-                <div>{item.expense} 원</div>
-              </div>
-            </Link>
-          </li>
+          <Link className="list" key={item.id} to={`/detail/${item.id}`}>
+            <div className="label">{item.date}</div>
+            <div className="main-text">
+              {item.category} / {item.detail}
+            </div>
+            <div>
+              <span className="highlight-text">{item.expense}</span> 원
+            </div>
+          </Link>
         ))}
       </ul>
     </>
