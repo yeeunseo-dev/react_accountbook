@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { useItems } from "../contexts/ItemContext";
-import styled from "styled-components";
+import { useSelector } from "react-redux";
 
 const MonthSelector = () => {
-  const { items } = useItems();
+  const items = useSelector((state) => state.items);
   const location = useLocation();
 
   const initialMonth =
@@ -13,11 +12,6 @@ const MonthSelector = () => {
     "전체";
 
   const [selectedMonth, setSelectedMonth] = useState(initialMonth);
-
-  // const [selectedMonth, setSelectedMonth] = useState(() => {
-  //   const savedMonth = localStorage.getItem("selectedMonth");
-  //   return savedMonth || "";
-  // });
 
   useEffect(() => {
     localStorage.setItem("selectedMonth", selectedMonth);
@@ -45,7 +39,7 @@ const MonthSelector = () => {
   // 월별 선택
   const filteredItems = items.filter((item) => {
     if (!selectedMonth || selectedMonth === "전체") return true;
-    const itemMonth = parseInt(item.date.substring(5, 7), 10) - 1; // 월은 0부터 시작하므로, 1을 빼줌 //이해 불가
+    const itemMonth = parseInt(item.date.substring(5, 7), 10) - 1;
     return months[itemMonth] === selectedMonth;
   });
 

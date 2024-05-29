@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { v4 as uuidv4 } from "uuid";
-import { useItems } from "../contexts/ItemContext";
+import { useDispatch } from "react-redux";
+import { addItem } from "../redux/slices/itemSlice";
 
 //입력 폼
 const InputForm = () => {
-  const { addItem } = useItems();
+  const dispatch = useDispatch();
   const [date, setDate] = useState("");
   const [category, setCategory] = useState("");
   const [expense, setExpense] = useState("");
@@ -32,13 +32,12 @@ const InputForm = () => {
       alert("전체를 입력해주세요");
     } else {
       const newItem = {
-        id: uuidv4(),
         date,
         category,
-        expense,
+        expense: parseInt(expense),
         detail,
       };
-      addItem(newItem);
+      dispatch(addItem(newItem));
 
       setDate("");
       setCategory("");

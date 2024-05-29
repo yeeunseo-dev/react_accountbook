@@ -1,11 +1,13 @@
 import { useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { useItems } from "../contexts/ItemContext";
+import { useSelector, useDispatch } from "react-redux";
+import { updateItem, deleteItem } from "../redux/slices/itemSlice";
 
 const Detail = () => {
   const navigate = useNavigate();
   const { id } = useParams();
-  const { items, updateItem, deleteItem } = useItems();
+  const dispatch = useDispatch();
+  const items = useSelector((state) => state.items);
 
   const dateRef = useRef(null);
   const categoryRef = useRef(null);
@@ -20,7 +22,7 @@ const Detail = () => {
 
   const handleDelete = () => {
     if (window.confirm("정말 삭제하시겠습니까?")) {
-      deleteItem(item.id);
+      dispatch(deleteItem(item.id));
       navigate("/");
     }
   };
@@ -38,7 +40,7 @@ const Detail = () => {
       expense: parseInt(expenseRef.current.value),
       id: item.id,
     };
-    updateItem(newItem);
+    dispatch(updateItem(newItem));
     const selectedMonth = newItem.date.substring(5, 7) + "월";
     navigate(-1, { replace: true });
   };
@@ -89,7 +91,6 @@ const Detail = () => {
         <button className="button main-button" onClick={handleUpdate}>
           수정
         </button>
-        {/* onClick은 객체가 아닌 함수를 넣어서 {{}} 할 필요 없음*/}
         <button className="button delete-button" onClick={handleDelete}>
           삭제
         </button>
