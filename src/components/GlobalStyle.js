@@ -53,47 +53,6 @@ const GlobalStyle = createGlobalStyle`
   text-decoration: none;
   }
 
-// 셀렉트박스 스타일
-
-/* common */
-/* 
-.hide{
-    display: none;
-}
-.show{
-    display: block;
-} */
-
-/* 셀렉트 영역 스타일 */
-/* .select{
-    position: relative;
-    height: 40px;
-    padding: 5px 10px;
-    width: 200px;
-    border-radius: 4px;
-    border:none;
-    cursor: pointer;
-
-    &:hover {
-    border: 2px solid #01BFA7;
-    outline: none };
-} */
-
-/* 옵션 영역 스타일 */
-/* .select ul{
-    position: absolute;
-    top: 30px;
-    left: 0;
-    width: 100%;
-    border:1px solid salmon;
-    border-radius: 4px;
-    background-color: #525252;
-    cursor: pointer;
-}
-.select ul li{
-    padding: 10px;
-} */
-
   .button {
     font-size: 14px;
     height: 40px;

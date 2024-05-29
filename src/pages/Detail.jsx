@@ -4,11 +4,12 @@ import { useParams, useNavigate } from "react-router-dom";
 const Detail = ({ items, updateItem, deleteItem }) => {
   const navigate = useNavigate();
   const { id } = useParams();
+  // const numericId = parseInt(id, 10);
   const dateRef = useRef(null);
   const categoryRef = useRef(null);
   const detailRef = useRef(null);
   const expenseRef = useRef(null);
-  const item = items.find((item) => item.id === parseInt(id));
+  const item = items.find((item) => item.id === id);
 
   if (!item) {
     return <div>Item not found</div>;
@@ -22,7 +23,8 @@ const Detail = ({ items, updateItem, deleteItem }) => {
   };
 
   const handleBack = () => {
-    navigate(-1);
+    const selectedMonth = item.date.substring(5, 7) + "월";
+    navigate(-1, { replace: true, state: { selectedMonth } });
   };
 
   const handleUpdate = () => {
@@ -30,18 +32,18 @@ const Detail = ({ items, updateItem, deleteItem }) => {
       date: dateRef.current.value,
       category: categoryRef.current.value,
       detail: detailRef.current.value,
-      expense: expenseRef.current.value,
+      expense: parseInt(expenseRef.current.value),
       id: item.id,
     };
     updateItem(newItem);
-    navigate(-1);
+    const selectedMonth = newItem.date.substring(5, 7) + "월";
+    navigate(-1, { replace: true });
   };
 
   // 현재 html의 정보를 알고 싶을 때 useRef사용
 
   return (
     <>
-      {" "}
       <div className="container">
         <div>
           <div className="detail-label">날짜</div>

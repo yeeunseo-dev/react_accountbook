@@ -1,19 +1,23 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
+import { Link, useLocation } from "react-router-dom";
 
-// styled-component
 const MonthSelector = ({ items }) => {
-  const getInitialMonth = () => {
-    const savedMonth = localStorage.getItem("selectedMonth");
-    return savedMonth ? savedMonth : "";
-  };
+  const location = useLocation();
 
-  const [selectedMonth, setSelectedMonth] = useState(getInitialMonth);
+  const initialMonth =
+    location.state?.selectedMonth ||
+    localStorage.getItem("selectedMonth") ||
+    "전체";
+
+  const [selectedMonth, setSelectedMonth] = useState(initialMonth);
 
   useEffect(() => {
     localStorage.setItem("selectedMonth", selectedMonth);
   }, [selectedMonth]);
+
+  useEffect(() => {
+    localStorage.clear();
+  }, []);
 
   const months = [
     "1월",
@@ -32,7 +36,7 @@ const MonthSelector = ({ items }) => {
 
   // 월별 선택
   const filteredItems = items.filter((item) => {
-    if (!selectedMonth) return true;
+    if (!selectedMonth || selectedMonth === "전체") return true;
     const itemMonth = parseInt(item.date.substring(5, 7), 10) - 1; // 월은 0부터 시작하므로, 1을 빼줌 //이해 불가
     return months[itemMonth] === selectedMonth;
   });
@@ -45,12 +49,25 @@ const MonthSelector = ({ items }) => {
             className="month-button"
             key={month}
             onClick={() => setSelectedMonth(month)}
-            selected={selectedMonth === month}
+            style={
+              selectedMonth === month
+                ? { backgroundColor: "#01BFA7", color: "white" }
+                : {}
+            }
           >
             {month}
           </button>
         ))}
-        <button className="month-button" onClick={() => setSelectedMonth("")}>
+        <button
+          className="month-button"
+          onClick={() => setSelectedMonth("전체")}
+          key={"all"}
+          style={
+            selectedMonth === "전체"
+              ? { backgroundColor: "#01BFA7", color: "white" }
+              : {}
+          }
+        >
           전체
         </button>
       </div>
