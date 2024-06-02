@@ -7,17 +7,9 @@ const MonthSelector = () => {
   const { items } = useItems();
   const location = useLocation();
 
-  const initialMonth =
-    location.state?.selectedMonth ||
-    localStorage.getItem("selectedMonth") ||
-    "전체";
+  const initialMonth = localStorage.getItem("selectedMonth") || "전체";
 
-  const [selectedMonth, setSelectedMonth] = useState(initialMonth);
-
-  // const [selectedMonth, setSelectedMonth] = useState(() => {
-  //   const savedMonth = localStorage.getItem("selectedMonth");
-  //   return savedMonth || "";
-  // });
+  const [selectedMonth, setSelectedMonth] = useState(() => initialMonth);
 
   useEffect(() => {
     localStorage.setItem("selectedMonth", selectedMonth);
@@ -45,7 +37,7 @@ const MonthSelector = () => {
   // 월별 선택
   const filteredItems = items.filter((item) => {
     if (!selectedMonth || selectedMonth === "전체") return true;
-    const itemMonth = parseInt(item.date.substring(5, 7), 10) - 1; // 월은 0부터 시작하므로, 1을 빼줌 //이해 불가
+    const itemMonth = parseInt(item.date.substring(5, 7), 10) - 1; // 월은 0부터 시작하므로, 1을 빼줌
     return months[itemMonth] === selectedMonth;
   });
 

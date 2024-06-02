@@ -27,7 +27,7 @@ const Detail = () => {
 
   const handleBack = () => {
     const selectedMonth = item.date.substring(5, 7) + "월";
-    navigate(-1, { replace: true, state: { selectedMonth } });
+    navigate("/", { replace: true, state: { selectedMonth } });
   };
 
   const handleUpdate = () => {

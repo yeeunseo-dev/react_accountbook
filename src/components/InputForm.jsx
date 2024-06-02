@@ -26,10 +26,18 @@ const InputForm = () => {
     setDetail(e.target.value);
   };
 
+  // 날짜 형식 검사 함수 (YYYY-MM-DD)
+  const isValidDate = (dateString) => {
+    const regex = /^\d{4}-\d{2}-\d{2}$/;
+    return regex.test(dateString);
+  };
+
   // 등록 시 리스팅, alert
   const handleSubmit = () => {
     if (!date || !category || !expense || !detail) {
       alert("전체를 입력해주세요");
+    } else if (!isValidDate(date)) {
+      alert("유효한 날짜를 입력해주세요 (YYYY-MM-DD 형식)");
     } else {
       const newItem = {
         id: uuidv4(),
@@ -60,7 +68,7 @@ const InputForm = () => {
         >
           <input
             className="input"
-            type="text"
+            type="date"
             placeholder="YYYY-MM-DD"
             value={date}
             onChange={dateHandler}
